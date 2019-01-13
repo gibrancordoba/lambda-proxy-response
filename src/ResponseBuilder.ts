@@ -52,10 +52,10 @@ export class ResponseBuilder {
 
   private static _returnAs<T>(result: T, statusCode: number, callback: ApiCallback): void {
     const bodyObject: IErrorResponseBody | T =
-      result instanceof ErrorResult ? { statusCode, error: result.message } : result;
+      result instanceof ErrorResult ? { httpStatusCode: statusCode, errorResult: result , message: result.name} : result;
 
     // tslint:disable-next-line:no-console
-    console.log('bodyObject _returnAs', bodyObject);
+    console.log('bodyObject _returnAs', result);
     const response: ApiResponse = {
       body: JSON.stringify(bodyObject),
       headers: {
