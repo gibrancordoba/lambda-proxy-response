@@ -3,9 +3,13 @@ const path = require('path');
 module.exports = {
   mode: "production",
   devtool: 'source-map',
-  entry: ["./src/index.ts", '"./src/utils/**"'],
+  entry: {
+    'index': './src/index.ts',
+    'utils/errors': './src/utils/errors',
+    'utils/status': './src/utils/http-status-codes',
+  },
   output: {
-    filename: 'index.js',
+    filename: '[name].js',
     library: "lambdaProxyResponses",
     libraryTarget: "umd",
     globalObject: 'this',
