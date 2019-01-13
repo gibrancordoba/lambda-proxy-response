@@ -1,0 +1,57 @@
+{
+  "name": "lambda-proxy-response",
+  "version": "0.0.1",
+  "description": "Module Response Generator to lambda proxy",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "scripts": {
+    "test": "jest --config jestconfig.json",
+    "coverage": "jest --config jestconfig.json --coverage",
+    "build": "npx webpack --config webpack.config.js",
+    "format": "prettier --write \"src/**/*.ts\" \"src/**/*.js\"",
+    "lint": "tslint -p tsconfig.json",
+    "dist" : "npm run build",
+    "prepublishOnly" : "npm test && npm run lint",
+    "preversion" : "npm run lint",
+    "version" : "npm run format && git add -A src",
+    "postversion" : "git push && git push --tags"
+  },
+  "files": [
+    "dist/**/*"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/gibrancordoba/lambda-proxy-response.git"
+  },
+  "keywords": [
+    "lambda",
+    "lambda-proxy",
+    "aws",
+    "amazon",
+    "serverless",
+    "typescript",
+    "serverless"
+  ],
+  "author": "Gibran Cordoba",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/gibrancordoba/lambda-proxy-response/issues"
+  },
+  "homepage": "https://github.com/gibrancordoba/lambda-proxy-response#readme",
+  "devDependencies": {
+    "@types/jest": "^23.3.12",
+    "jest": "^23.6.0",
+    "prettier": "^1.15.3",
+    "ts-jest": "^23.10.5",
+    "ts-loader": "^5.3.3",
+    "tslint": "^5.12.1",
+    "tslint-config-prettier": "^1.17.0",
+    "typescript": "^3.2.2",
+    "webpack": "^4.28.4",
+    "webpack-cli": "^3.2.1"
+  },
+  "dependencies": {
+    "@types/aws-lambda": "^8.10.17",
+    "aws-lambda": "^0.1.2"
+  }
+}
