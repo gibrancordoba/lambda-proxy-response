@@ -4,8 +4,6 @@ module.exports = {
   entry: './src/index.ts',
   devtool: 'inline-source-map',
   mode:'development',
-  library: 'lambda-proxy-responses',
-  libraryTarget: 'commonjs',
   module: {
     rules: [
       {
@@ -23,6 +21,8 @@ module.exports = {
   },
   output: {
     filename: 'index.js',
+    library: 'lambda-proxy-responses',
+    libraryTarget: 'commonjs',
     path: path.resolve(__dirname, 'dist')
   }
 };
