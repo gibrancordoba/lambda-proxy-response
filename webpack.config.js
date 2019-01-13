@@ -1,18 +1,22 @@
 const path = require('path');
 
 module.exports = {
-  mode: "development",
+  mode: "production",
   devtool: 'source-map',
   entry: "./src/index.ts",
   output: {
     filename: 'index.js',
-    libraryTarget: 'umd',
-    library: 'MyLib',
+    library: "lambdaProxyResponses",
+    libraryTarget: "umd",
+    globalObject: 'this',
     umdNamedDefine: true,
     path: path.resolve(__dirname, 'dist')
   },
   resolve: {
-    extensions: ['.ts', '.tsx', '.js']
+    extensions: ['.ts', '.tsx', '.js'],
+    modules: [
+      "node_modules"
+    ]
   },
   module: {
     rules: [
