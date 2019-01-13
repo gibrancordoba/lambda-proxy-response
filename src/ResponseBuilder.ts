@@ -55,7 +55,7 @@ export class ResponseBuilder {
       result instanceof ErrorResult ? { httpStatusCode: statusCode, message: result.name } : result;
 
     // tslint:disable-next-line:no-console
-    console.log('bodyObject _returnAs', result);
+    console.log('bodyObject _returnAs', result, result instanceof ErrorResult, bodyObject);
     const response: ApiResponse = {
       body: JSON.stringify(bodyObject),
       headers: {
