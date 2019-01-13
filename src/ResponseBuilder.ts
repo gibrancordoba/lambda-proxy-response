@@ -53,7 +53,7 @@ export class ResponseBuilder {
   private static _returnAs<T>(result: T, statusCode: number, callback: ApiCallback): void {
     const bodyObject: IErrorResponseBody | T =
       result instanceof ErrorResult
-        ? { httpStatusCode: statusCode, errorResult: result, message: result.name }
+        ? { httpStatusCode: statusCode, message: result.name }
         : result;
 
     // tslint:disable-next-line:no-console

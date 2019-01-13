@@ -2,8 +2,11 @@
 export abstract class ErrorResult extends Error {
   public constructor(public code: number, public message: string) {
     super(message);
+    (Error as any).captureStackTrace(this, ErrorResult);
   }
 }
+
+(ErrorResult as any).prototype = new Error();
 
 export class ClientErrorException extends ErrorResult {}
 
