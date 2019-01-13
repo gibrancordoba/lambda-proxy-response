@@ -1,8 +1,9 @@
 {
   "compilerOptions": {
-    "target": "es5",
+    "target": "es2015",
     "module": "commonjs",
     "declaration": true,
+    "declarationDir": "./dist/types",
     "outDir": "./dist/",
     "noImplicitAny": true,
     "sourceMap": true,
@@ -15,7 +16,7 @@
     // "allowJs": true
   },
   "exclude": [
-    "node_modules", 
+    "node_modules",
     "**/test/*"
   ]
 }
