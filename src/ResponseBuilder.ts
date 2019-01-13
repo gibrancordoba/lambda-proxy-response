@@ -31,7 +31,7 @@ export class ResponseBuilder {
     console.log('serverError method', code, error, callback);
     const errorResult: ServerErrorException = new ServerErrorException(code, 'Internal Server Error...');
     // tslint:disable-next-line:no-console
-    console.log('errorResult method',  (errorResult instanceof ErrorResult), (errorResult instanceof ServerErrorException));
+    console.log('errorResult method', errorResult instanceof ErrorResult, errorResult instanceof ServerErrorException);
     ResponseBuilder._returnAs<ServerErrorException>(errorResult, HttpStatusCode.INTERNAL_SERVER_ERROR, callback);
   }
 
@@ -43,7 +43,7 @@ export class ResponseBuilder {
   public static notFound(message: string, callback: ApiCallback): void {
     const errorResult: NotFoundException = new NotFoundException(message);
     // tslint:disable-next-line:no-console
-    console.log('errorResult method',  (errorResult instanceof ErrorResult), (errorResult instanceof ClientErrorException));
+    console.log('errorResult method', errorResult instanceof ErrorResult, errorResult instanceof ClientErrorException);
     ResponseBuilder._returnAs<NotFoundException>(errorResult, HttpStatusCode.NOT_FOUND, callback);
   }
 
