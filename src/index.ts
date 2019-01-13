@@ -1,3 +1,3 @@
-import * as ResponseBuilder from "./utils/ResponseBuilder";
+import * as ResponseBuilder from './utils/ResponseBuilder';
 
 export default ResponseBuilder;

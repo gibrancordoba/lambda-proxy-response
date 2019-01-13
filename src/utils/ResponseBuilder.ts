@@ -1,16 +1,12 @@
-import { 
-  ApiCallback, 
-  ApiResponse, 
-  IErrorResponseBody 
-} from '../interfaces/api-interfaces';
+import { ApiCallback, ApiResponse, IErrorResponseBody } from '../interfaces/api-interfaces';
 
-import { 
-  // BadRequestException, 
-  ErrorResult, 
-  // ForbiddenException, 
+import {
+  // BadRequestException,
+  ErrorResult,
+  // ForbiddenException,
   // InternalServerErrorException,
-  // NotFoundException, 
-  ServerErrorException 
+  // NotFoundException,
+  ServerErrorException,
 } from '../error/errors';
 import { ServerErrorStatus } from '../interfaces/http-status-code-numbers';
 import { HttpStatusCode } from './http-status-codes';
@@ -19,7 +15,6 @@ import { HttpStatusCode } from './http-status-codes';
  * Contains helper methods to generate a HTTP response.
  */
 export class ResponseBuilder {
-
   // public static badRequest(code: string, description: string, callback: ApiCallback): void {
   //   const errorResult: BadRequestResult = new BadRequestResult(code, description);
   //   ResponseBuilder._returnAs<BadRequestResult>(errorResult, HttpStatusCode.BadRequest, callback);
@@ -31,7 +26,7 @@ export class ResponseBuilder {
   // }
 
   public static serverError(code: ServerErrorStatus, error: Error, callback: ApiCallback): void {
-    const errorResult: ServerErrorException = new ServerErrorException(code,'Internal Error...');
+    const errorResult: ServerErrorException = new ServerErrorException(code, 'Internal Error...');
     ResponseBuilder._returnAs<ServerErrorException>(errorResult, HttpStatusCode.INTERNAL_SERVER_ERROR, callback);
   }
 
@@ -50,17 +45,16 @@ export class ResponseBuilder {
   }
 
   private static _returnAs<T>(result: T, statusCode: number, callback: ApiCallback): void {
-    const bodyObject: IErrorResponseBody | T = result instanceof ErrorResult
-      ? { statusCode: result.code, error: result }
-      : result;
+    const bodyObject: IErrorResponseBody | T =
+      result instanceof ErrorResult ? { statusCode: result.code, error: result } : result;
     const response: ApiResponse = {
       body: JSON.stringify(bodyObject),
       headers: {
-        'Access-Control-Allow-Origin': '*'  // This is required to make CORS work with AWS API Gateway Proxy Integration.
+        'Access-Control-Allow-Origin': '*', // This is required to make CORS work with AWS API Gateway Proxy Integration.
       },
       statusCode,
       // tslint:disable-next-line:object-literal-sort-keys
-      isBase64Encoded: false
+      isBase64Encoded: false,
     };
 
     callback(undefined, response);
