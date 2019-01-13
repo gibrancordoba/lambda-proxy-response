@@ -1,3 +1,2 @@
-import { ResponseBuilder } from './ResponseBuilder';
+export { ResponseBuilder } from './ResponseBuilder';
 
-export default ResponseBuilder;
