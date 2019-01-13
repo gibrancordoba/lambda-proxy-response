@@ -3,7 +3,7 @@ const path = require('path');
 module.exports = {
   mode: "production",
   devtool: 'source-map',
-  entry: "./src/index.ts",
+  entry: ["./src/index.ts", '"./src/utils/**"'],
   output: {
     filename: 'index.js',
     library: "lambdaProxyResponses",
