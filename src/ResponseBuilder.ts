@@ -41,6 +41,8 @@ export class ResponseBuilder {
 
   public static notFound(message: string, callback: ApiCallback): void {
     const errorResult: NotFoundException = new NotFoundException(message);
+    // tslint:disable-next-line:no-console
+    console.log('errorResult method', NotFoundException, errorResult);
     ResponseBuilder._returnAs<NotFoundException>(errorResult, HttpStatusCode.NOT_FOUND, callback);
   }
 
