@@ -6,8 +6,8 @@ import {
   // ForbiddenException,
   // InternalServerErrorException,
   // NotFoundException,
-  ServerErrorException,
   NotFoundException,
+  ServerErrorException,
 } from './utils/errors';
 import { HttpStatusCode } from './utils/http-status-codes';
 
