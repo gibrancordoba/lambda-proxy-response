@@ -25,7 +25,11 @@ export class ResponseBuilder {
   // }
 
   public static serverError(code: ServerErrorStatus, error: Error, callback: ApiCallback): void {
+    // tslint:disable-next-line:no-console
+    console.log('serverError method', code, error, callback);
     const errorResult: ServerErrorException = new ServerErrorException(code, 'Internal Error...');
+    // tslint:disable-next-line:no-console
+    console.log('errorResult method', errorResult);
     ResponseBuilder._returnAs<ServerErrorException>(errorResult, HttpStatusCode.INTERNAL_SERVER_ERROR, callback);
   }
 
@@ -48,6 +52,9 @@ export class ResponseBuilder {
   private static _returnAs<T>(result: T, statusCode: number, callback: ApiCallback): void {
     const bodyObject: IErrorResponseBody | T =
       result instanceof ErrorResult ? { statusCode, error: result.message } : result;
+
+      // tslint:disable-next-line:no-console
+    console.log('bodyObject _returnAs', bodyObject);
     const response: ApiResponse = {
       body: JSON.stringify(bodyObject),
       headers: {
