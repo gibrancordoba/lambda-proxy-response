@@ -4,9 +4,10 @@ export class ErrorResult extends Error {
     super(message);
     this.code = code;
     this.name = this.constructor.name;
-    (Error as any).captureStackTrace(this, ErrorResult);
   }
 }
+
+(ErrorResult as any).prototype = new Error();
 
 export class ClientErrorException extends ErrorResult {}
 
