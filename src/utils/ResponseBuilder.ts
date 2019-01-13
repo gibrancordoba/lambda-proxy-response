@@ -14,7 +14,7 @@ import { HttpStatusCode } from './http-status-codes';
 /**
  * Contains helper methods to generate a HTTP response.
  */
-export class ResponseBuilder {
+export default class ResponseBuilder {
   // public static badRequest(code: string, description: string, callback: ApiCallback): void {
   //   const errorResult: BadRequestResult = new BadRequestResult(code, description);
   //   ResponseBuilder._returnAs<BadRequestResult>(errorResult, HttpStatusCode.BadRequest, callback);
@@ -41,6 +41,8 @@ export class ResponseBuilder {
   // }
 
   public static ok<T>(result: T, callback: ApiCallback): void {
+    // tslint:disable-next-line:no-console
+    console.log('OK method', result, callback);
     ResponseBuilder._returnAs<T>(result, HttpStatusCode.OK, callback);
   }
 
