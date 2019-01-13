@@ -1,5 +1,5 @@
 {
-  "name": "lambda-proxy-response",
+  "name": "lambda-proxy-responses",
   "version": "0.0.1",
   "description": "Module Response Generator to lambda proxy",
   "main": "dist/index.js",
@@ -21,7 +21,7 @@
   ],
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/gibrancordoba/lambda-proxy-response.git"
+    "url": "git+https://github.com/gibrancordoba/lambda-proxy-responses.git"
   },
   "keywords": [
     "lambda",
