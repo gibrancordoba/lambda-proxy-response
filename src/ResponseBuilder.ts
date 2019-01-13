@@ -53,7 +53,7 @@ export class ResponseBuilder {
     const bodyObject: IErrorResponseBody | T =
       result instanceof ErrorResult ? { statusCode, error: result.message } : result;
 
-      // tslint:disable-next-line:no-console
+    // tslint:disable-next-line:no-console
     console.log('bodyObject _returnAs', bodyObject);
     const response: ApiResponse = {
       body: JSON.stringify(bodyObject),
