@@ -11,5 +11,5 @@ export type ApiResponse = ProxyResult;
 
 export interface IErrorResponseBody {
   statusCode: number;
-  error: ErrorResult;
+  error: any;
 }
