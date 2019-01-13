@@ -22,7 +22,7 @@ module.exports = {
   output: {
     filename: 'index.js',
     library: 'lambda-proxy-responses',
-    libraryTarget: 'commonjs',
+    libraryTarget: 'umd',
     path: path.resolve(__dirname, 'dist')
   }
 };
