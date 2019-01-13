@@ -7,6 +7,7 @@ import {
   // InternalServerErrorException,
   // NotFoundException,
   ServerErrorException,
+  NotFoundException,
 } from './utils/errors';
 import { HttpStatusCode } from './utils/http-status-codes';
 
@@ -27,7 +28,7 @@ export class ResponseBuilder {
   public static serverError(code: ServerErrorStatus, error: Error, callback: ApiCallback): void {
     // tslint:disable-next-line:no-console
     console.log('serverError method', code, error, callback);
-    const errorResult: ServerErrorException = new ServerErrorException(code, 'Internal Error...');
+    const errorResult: ServerErrorException = new ServerErrorException(code, 'Internal Server Error...');
     // tslint:disable-next-line:no-console
     console.log('errorResult method', errorResult);
     ResponseBuilder._returnAs<ServerErrorException>(errorResult, HttpStatusCode.INTERNAL_SERVER_ERROR, callback);
@@ -38,10 +39,10 @@ export class ResponseBuilder {
   //   ResponseBuilder._returnAs<InternalServerErrorResult>(errorResult, HttpStatusCode.InternalServerError, callback);
   // }
 
-  // public static notFound(code: string, description: string, callback: ApiCallback): void {
-  //   const errorResult: NotFoundResult = new NotFoundResult(code, description);
-  //   ResponseBuilder._returnAs<NotFoundResult>(errorResult, HttpStatusCode.NotFound, callback);
-  // }
+  public static notFound(message: string, callback: ApiCallback): void {
+    const errorResult: NotFoundException = new NotFoundException(message);
+    ResponseBuilder._returnAs<NotFoundException>(errorResult, HttpStatusCode.NOT_FOUND, callback);
+  }
 
   public static ok<T>(result: T, callback: ApiCallback): void {
     // tslint:disable-next-line:no-console
@@ -51,7 +52,7 @@ export class ResponseBuilder {
 
   private static _returnAs<T>(result: T, statusCode: number, callback: ApiCallback): void {
     const bodyObject: IErrorResponseBody | T =
-      result instanceof ErrorResult ? { statusCode, error: result.message } : result;
+      result instanceof ErrorResult ? { "statusCode": statusCode, error: result.message } : result;
 
     // tslint:disable-next-line:no-console
     console.log('bodyObject _returnAs', bodyObject);
@@ -64,6 +65,10 @@ export class ResponseBuilder {
       // tslint:disable-next-line:object-literal-sort-keys
       isBase64Encoded: false,
     };
+
+    if(result instanceof ServerErrorException) {
+      callback(result);
+    }
 
     callback(undefined, response);
   }
