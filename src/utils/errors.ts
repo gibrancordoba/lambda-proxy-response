@@ -4,6 +4,7 @@ export class ErrorResult extends Error {
     super(message);
     this.code = code;
     this.name = this.constructor.name;
+    Object.setPrototypeOf(this, ErrorResult.prototype);
   }
 }
 
@@ -13,6 +14,7 @@ export class ClientErrorException extends ErrorResult {
   public constructor(public code: number, public message: string) {
     super(code, message);
     this.name = 'ClientErrorException';
+    Object.setPrototypeOf(this, ClientErrorException.prototype);
   }
 }
 
@@ -31,6 +33,7 @@ export class ForbiddenException extends ClientErrorException {
 export class NotFoundException extends ClientErrorException {
   public constructor(public message: string) {
     super(404, message);
+    Object.setPrototypeOf(this, NotFoundException.prototype);
   }
 }
 
@@ -38,6 +41,7 @@ export class ServerErrorException extends ErrorResult {
   public constructor(public code: number, public message: string) {
     super(code, message);
     this.name = 'ClientErrorException';
+    Object.setPrototypeOf(this, ServerErrorException.prototype);
   }
 }
 

@@ -1,11 +1,7 @@
 import { ApiCallback, ApiResponse, IErrorResponseBody } from './interfaces/api-interfaces';
 import { ServerErrorStatus } from './interfaces/http-status-code-numbers';
 import {
-  // BadRequestException,
   ClientErrorException,
-  // ForbiddenException,
-  // InternalServerErrorException,
-  // NotFoundException,
   ErrorResult,
   NotFoundException,
   ServerErrorException,
