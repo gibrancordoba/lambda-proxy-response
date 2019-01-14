@@ -1,11 +1,6 @@
 import { ApiCallback, ApiResponse, IErrorResponseBody } from './interfaces/api-interfaces';
 import { ServerErrorStatus } from './interfaces/http-status-code-numbers';
-import {
-  ClientErrorException,
-  ErrorResult,
-  NotFoundException,
-  ServerErrorException,
-} from './utils/errors';
+import { ClientErrorException, ErrorResult, NotFoundException, ServerErrorException } from './utils/errors';
 import { HttpStatusCode } from './utils/http-status-codes';
 
 /**
