@@ -10,7 +10,7 @@ export type ApiHandler = (event: APIGatewayEvent, context: Context, callback: Ap
 export type ApiResponse = ProxyResult;
 
 export interface IErrorResponseBody {
-  httpStatusCode: number;
-  message: string;
-  errorResult?: ErrorResult;
+  statusCode: number;
+  timestamp: number;
+  error?: ErrorResult;
 }
