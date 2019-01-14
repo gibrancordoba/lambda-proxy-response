@@ -9,7 +9,12 @@ export class ErrorResult extends Error {
 
 (ErrorResult as any).prototype = new Error();
 
-export class ClientErrorException extends ErrorResult {}
+export class ClientErrorException extends ErrorResult {
+  public constructor(public code: number, public message: string) {
+    super(code, message);
+    this.name = 'ClientErrorException';
+  }
+}
 
 export class BadRequestException extends ClientErrorException {
   public constructor(public message: string) {
@@ -29,7 +34,12 @@ export class NotFoundException extends ClientErrorException {
   }
 }
 
-export class ServerErrorException extends ErrorResult {}
+export class ServerErrorException extends ErrorResult {
+  public constructor(public code: number, public message: string) {
+    super(code, message);
+    this.name = 'ClientErrorException';
+  }
+}
 
 export class InternalServerErrorException extends ServerErrorException {
   public constructor(public message: string) {
