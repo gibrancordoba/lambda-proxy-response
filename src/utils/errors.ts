@@ -21,7 +21,6 @@ export class ErrorResult extends Error {
 
 (ErrorResult as any).prototype = new Error();
 
-
 // 4xx Error Exceptions
 export class ClientErrorException extends ErrorResult {
   public constructor(public code: number, public message: any) {
@@ -52,7 +51,6 @@ export class NotFoundException extends ClientErrorException {
     Object.setPrototypeOf(this, NotFoundException.prototype);
   }
 }
-
 
 // 5xx Error Exceptions
 export class ServerErrorException extends ErrorResult {

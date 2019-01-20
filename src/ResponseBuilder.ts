@@ -1,8 +1,13 @@
 import { ApiCallback, ApiResponse, IErrorResponseBody } from './interfaces/api-interfaces';
 import { ClientErrorStatus, ServerErrorStatus } from './interfaces/http-status-code-numbers';
 import {
-  BadRequestException, ClientErrorException, ErrorResult, ForbiddenException,
-  InternalServerErrorException, NotFoundException, ServerErrorException
+  BadRequestException,
+  ClientErrorException,
+  ErrorResult,
+  ForbiddenException,
+  InternalServerErrorException,
+  NotFoundException,
+  ServerErrorException,
 } from './utils/errors';
 import { HttpStatusCode } from './utils/http-status-codes';
 
@@ -10,7 +15,6 @@ import { HttpStatusCode } from './utils/http-status-codes';
  * Contains helper methods to generate a HTTP response.
  */
 export class ResponseBuilder {
-
   //  5xx Errors
   public static serverError(code: ServerErrorStatus, error: Error, callback: ApiCallback): void {
     const errorResult: ServerErrorException = new ServerErrorException(code, error);
@@ -19,7 +23,11 @@ export class ResponseBuilder {
 
   public static internalServerError(error: Error, callback: ApiCallback): void {
     const errorResult: InternalServerErrorException = new InternalServerErrorException(error);
-    ResponseBuilder._returnAs<InternalServerErrorException>(errorResult, HttpStatusCode.INTERNAL_SERVER_ERROR, callback);
+    ResponseBuilder._returnAs<InternalServerErrorException>(
+      errorResult,
+      HttpStatusCode.INTERNAL_SERVER_ERROR,
+      callback,
+    );
   }
 
   // 4xx Client Errors
