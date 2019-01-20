@@ -10,7 +10,7 @@ export class ErrorResult extends Error {
     this.message = object instanceof Error ? object.message : object;
     this.stack = object instanceof Error ? object.stack : undefined;
     if (object instanceof Error) {
-      this.meta = JSON.stringify(object);
+      this.meta = JSON.stringify(object, Object.getOwnPropertyNames(object));
     } else {
       this.meta = { message: object };
     }

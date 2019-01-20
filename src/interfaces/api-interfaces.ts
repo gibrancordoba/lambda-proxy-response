@@ -11,6 +11,6 @@ export type ApiResponse = ProxyResult;
 
 export interface IErrorResponseBody {
   statusCode: number;
-  timestamp: number;
+  transactionTime: number;
   error?: ErrorResult;
 }

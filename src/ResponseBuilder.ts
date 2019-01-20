@@ -38,7 +38,7 @@ export class ResponseBuilder {
 
   private static _returnAs<T>(result: T, statusCode: number, callback: ApiCallback): void {
     const bodyObject: IErrorResponseBody | T =
-      result instanceof ErrorResult ? { statusCode, timestamp: new Date().getTime(), error: result } : result;
+      result instanceof ErrorResult ? { statusCode, transactionTime: new Date().getTime(), error: result } : result;
     const response: ApiResponse = {
       body: JSON.stringify(bodyObject),
       headers: {
