@@ -31,8 +31,8 @@ export class ResponseBuilder {
   //   ResponseBuilder._returnAs<InternalServerErrorResult>(errorResult, HttpStatusCode.InternalServerError, callback);
   // }
 
-  public static notFound(message: string, callback: ApiCallback): void {
-    const errorResult: NotFoundException = new NotFoundException(message);
+  public static notFound(object: string | Error, callback: ApiCallback): void {
+    const errorResult: NotFoundException = new NotFoundException(object);
     // tslint:disable-next-line:no-console
     console.log('errorResult method', errorResult instanceof ErrorResult, errorResult instanceof ClientErrorException);
     ResponseBuilder._returnAs<NotFoundException>(errorResult, HttpStatusCode.NOT_FOUND, callback);

@@ -1,8 +1,12 @@
 // tslint:disable max-classes-per-file (Many simple inherited classes.)
 export class ErrorResult extends Error {
-  public constructor(public code: number, public message: string) {
-    super(message);
+
+  public meta: any;
+
+  public constructor(public code: number, public object: any) {
+    super((object instanceof Error) ? object.message : object);
     this.code = code;
+    if (object instanceof Error) {  this.meta = object; }
     this.name = this.constructor.name;
     Object.setPrototypeOf(this, ErrorResult.prototype);
   }
@@ -11,7 +15,7 @@ export class ErrorResult extends Error {
 (ErrorResult as any).prototype = new Error();
 
 export class ClientErrorException extends ErrorResult {
-  public constructor(public code: number, public message: string) {
+  public constructor(public code: number, public message: any) {
     super(code, message);
     this.name = 'ClientErrorException';
     Object.setPrototypeOf(this, ClientErrorException.prototype);
@@ -25,14 +29,15 @@ export class BadRequestException extends ClientErrorException {
 }
 
 export class ForbiddenException extends ClientErrorException {
-  public constructor(public message: string) {
+  public constructor(public message: string | Error) {
     super(403, message);
   }
 }
 
 export class NotFoundException extends ClientErrorException {
-  public constructor(public message: string) {
+  public constructor(public message: any) {
     super(404, message);
+    this.name = 'NotFoundErrorException';
     Object.setPrototypeOf(this, NotFoundException.prototype);
   }
 }
