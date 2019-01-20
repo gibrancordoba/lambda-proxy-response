@@ -18,11 +18,7 @@ export class ResponseBuilder {
   // }
 
   public static serverError(code: ServerErrorStatus, error: Error, callback: ApiCallback): void {
-    // tslint:disable-next-line:no-console
-    console.log('serverError method', code, error, callback);
     const errorResult: ServerErrorException = new ServerErrorException(code, 'Internal Server Error...');
-    // tslint:disable-next-line:no-console
-    console.log('errorResult method', errorResult instanceof ErrorResult, errorResult instanceof ServerErrorException);
     ResponseBuilder._returnAs<ServerErrorException>(errorResult, HttpStatusCode.INTERNAL_SERVER_ERROR, callback);
   }
 
@@ -33,23 +29,16 @@ export class ResponseBuilder {
 
   public static notFound(object: string | Error, callback: ApiCallback): void {
     const errorResult: NotFoundException = new NotFoundException(object);
-    // tslint:disable-next-line:no-console
-    console.log('errorResult method', errorResult instanceof ErrorResult, errorResult instanceof ClientErrorException);
     ResponseBuilder._returnAs<NotFoundException>(errorResult, HttpStatusCode.NOT_FOUND, callback);
   }
 
   public static ok<T>(result: T, callback: ApiCallback): void {
-    // tslint:disable-next-line:no-console
-    console.log('OK method', result, callback);
     ResponseBuilder._returnAs<T>(result, HttpStatusCode.OK, callback);
   }
 
   private static _returnAs<T>(result: T, statusCode: number, callback: ApiCallback): void {
     const bodyObject: IErrorResponseBody | T =
       result instanceof ErrorResult ? { statusCode, timestamp: new Date().getTime(), error: result } : result;
-
-    // tslint:disable-next-line:no-console
-    console.log('bodyObject _returnAs', result, result instanceof ErrorResult, bodyObject);
     const response: ApiResponse = {
       body: JSON.stringify(bodyObject),
       headers: {
