@@ -12,7 +12,7 @@ export class ErrorResult extends Error {
     if (object instanceof Error) {
       this.meta = JSON.stringify(object);
     } else {
-      this.meta = { message : object };
+      this.meta = { message: object };
     }
     this.name = this.constructor.name;
     Object.setPrototypeOf(this, ErrorResult.prototype);
