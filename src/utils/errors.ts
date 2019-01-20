@@ -1,12 +1,13 @@
 // tslint:disable max-classes-per-file (Many simple inherited classes.)
 export class ErrorResult extends Error {
-
   public meta: any;
 
   public constructor(public code: number, public object: any) {
-    super((object instanceof Error) ? object.message : object);
+    super(object instanceof Error ? object.message : object);
     this.code = code;
-    if (object instanceof Error) {  this.meta = object; }
+    if (object instanceof Error) {
+      this.meta = object;
+    }
     this.name = this.constructor.name;
     Object.setPrototypeOf(this, ErrorResult.prototype);
   }
