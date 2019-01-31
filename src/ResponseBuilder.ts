@@ -61,7 +61,11 @@ export class ResponseBuilder {
     const response: ApiResponse = {
       body: JSON.stringify(bodyObject),
       headers: {
-        'Access-Control-Allow-Origin': '*', // This is required to make CORS work with AWS API Gateway Proxy Integration.
+            "X-Requested-With": '*',
+            // tslint:disable-next-line:object-literal-sort-keys
+            "Access-Control-Allow-Headers": 'Content-Type,X-Amz-Date,Authorization,X-Api-Key,x-requested-with',
+            "Access-Control-Allow-Origin": '*',
+            "Access-Control-Allow-Methods": 'POST,GET,OPTIONS'
       },
       statusCode,
       // tslint:disable-next-line:object-literal-sort-keys
