@@ -65,7 +65,8 @@ export class ResponseBuilder {
         // tslint:disable-next-line:object-literal-sort-keys
         'Access-Control-Allow-Credentials': false,
         'Access-Control-Max-Age': '86400',
-        'Access-Control-Allow-Headers': 'X-Requested-With, X-HTTP-Method-Override, Content-Type, Accept, Access-Control-Allow-Origin, Access-Control-Allow-Headers, Authorization',
+        'Access-Control-Allow-Headers':
+          'X-Requested-With, X-HTTP-Method-Override, Content-Type, Accept, Access-Control-Allow-Origin, Access-Control-Allow-Headers, Authorization',
         'Access-Control-Allow-Origin': '*', // This is required to make CORS work with AWS API Gateway Proxy Integration.
       },
       statusCode,
