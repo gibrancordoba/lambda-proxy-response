@@ -60,7 +60,7 @@ export class ResponseBuilder {
       result instanceof ErrorResult
         ? { response: 'error', statusCode, transactionTime: new Date().getTime(), data: result }
         : result;
-    (bodyObject as any).response = 'success';
+    (bodyObject as any).response = (bodyObject as any).statusCode ? 'error' : 'success';
     const response: ApiResponse = {
       body: JSON.stringify(bodyObject),
       headers: {
